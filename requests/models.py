@@ -373,7 +373,7 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):
         # Don't do any URL preparation for non-HTTP schemes like `mailto`,
         # `data` etc to work around exceptions from `url_parse`, which
         # handles RFC 3986 only.
-        if ':' in url and not url.lower().startswith('http'):
+        if ':' in url and url.lower().split(':')[0] in ['http', 'https']:
             self.url = url
             return
 
